@@ -1,0 +1,327 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+
+// Colors, borders, and typografy
+@mixin form-wrapper {
+  background: #FFF;
+
+  @include border-radius(7px);
+  @include box-shadow(0px 1px 3px 0px rgba(0, 0, 0, 0.2));
+}
+
+@mixin form-header {
+  border-bottom: 1px solid #EEEEEE;
+
+  $experimental-support-for-svg: true;
+  background-color: rgb(249, 252, 247);
+  @include filter-gradient(#f9fcf7, #f5f9f0, vertical);
+  @include background-image(linear-gradient(top, rgba(249, 252, 247, 1) 0%, rgba(245, 249, 240, 1) 100%));
+
+  @include border-radius(7px 7px 0 0);
+  @include box-shadow(inset 0px 1px 0px 0px #FFFFFF);
+
+  color: #777777;
+}
+
+@mixin form-body {
+  $experimental-support-for-svg: true;
+  background-color: rgb(255, 255, 255);
+  @include filter-gradient(#ffffff, #e5e5e5, vertical);
+  @include background-image(linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(229, 229, 229, 1) 100%));
+}
+
+@mixin form-inputs {
+  background: #FCFCFC;
+
+  @include border-radius(3px);
+  @include box-shadow(inset 0px 1px 3px 0px #DDDDDD);
+  background-color: rgb(255, 255, 255);
+
+  -box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  padding: 4px;
+
+  border: 1px solid #b8b8b8;
+  font-size: 14px;
+
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+@mixin form-footer {
+  @include border-radius(0 0 7px 7px);
+  $experimental-support-for-svg: true;
+  background-color: rgb(255, 255, 255);
+  @include filter-gradient(#ffffff, #f6f6f6, vertical);
+  @include background-image(linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(241, 241, 241, 1) 50%, rgba(225, 225, 225, 1) 51%, rgba(246, 246, 246, 1) 100%));
+}
+
+@mixin form-buttons {
+  @include border-radius(3px);
+  border: 1px solid #769800;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 1em;
+  text-shadow: 0 -1px rgba(41, 41, 41, 0.5);
+  padding: 0.5em;
+  line-height: 1.5em;
+}
+
+@mixin form-buttons-normal {
+  $experimental-support-for-svg: true;
+
+//http://www.colorzilla.com/gradient-editor/#ffb76b+0,ffa83d+50,ff7c01+51,ff7e05+100;Custom
+  background-color: rgb(255, 183, 107);
+  @include filter-gradient(#ffb76b, #ff7f04, vertical);
+  @include background-image(linear-gradient(top, rgba(255, 183, 107, 1) 0%, rgba(255, 167, 61, 1) 50%, rgba(255, 124, 0, 1) 51%, rgba(255, 127, 4, 1) 100%));
+
+  &:hover {
+    $experimental-support-for-svg: true;
+
+    //http://www.colorzilla.com/gradient-editor/#ffca91+0,ffbd6d+50,ff9d41+51,ff9e43+100;Custom
+    background-color: rgb(255,202,145);
+    @include filter-gradient(#ffca91, #ff9e43, vertical);
+    @include background-image(linear-gradient(top,  rgba(255,202,145,1) 0%,rgba(255,189,109,1) 50%,rgba(255,157,65,1) 51%,rgba(255,158,67,1) 100%));
+  }
+}
+
+@mixin form-buttons-submit {
+  @include form-buttons;
+  $experimental-support-for-svg: true;
+
+  //http://www.colorzilla.com/gradient-editor/#9dd53a+0,a1d54f+50,80c217+51,7cbc0a+100;Custom
+  background-color: rgb(157, 213, 58);
+  @include filter-gradient(#9dd53a, #7cbc0a, vertical);
+  @include background-image(linear-gradient(top, rgba(157, 213, 58, 1) 0%, rgba(161, 213, 79, 1) 50%, rgba(128, 194, 23, 1) 51%, rgba(124, 188, 10, 1) 100%));
+
+  &:hover {
+    $experimental-support-for-svg: true;
+    //http://www.colorzilla.com/gradient-editor/#ffca91+0,ffbd6d+50,ff9d41+51,ff9e43+100;Custom
+    background-color: rgb(166,217,79);
+    @include filter-gradient(#a6d94f, #8fda0c, vertical);
+    @include background-image(linear-gradient(top,  rgba(166,217,79,1) 0%,rgba(171,217,97,1) 50%,rgba(147,222,26,1) 51%,rgba(143,218,12,1) 100%));
+  }
+}
+
+// Everything else...
+.themed_form.default {
+
+  .gform_wrapper {
+    @include form-wrapper;
+
+    margin: 0;
+    max-width: 100%;
+
+    .gform_heading {
+      @include form-header;
+
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 36px;
+      margin: 0 0 7px 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    h3.gform_title, .gform_description {
+      width: auto;
+      padding: 0 0.25em;
+      display: block;
+    }
+
+    .gf_progressbar_wrapper {
+      margin: 0 1em;
+      width: auto;
+    }
+
+    .validation_error {
+      display: none;
+    }
+
+    .gform_body {
+      @include form-body;
+
+      .gsection_title, .gsection_description {
+        width: 98%;
+        margin: 0 auto;
+      }
+
+      .gsection_title {
+        text-align: center;
+      }
+
+      .gsection_description {
+        padding: 0 0.5em;
+        font-style: italic;
+      }
+
+      .gform_fields {
+
+        li.gfield {
+          margin: 0;
+
+          label {
+            font-size: 0.8em;
+            line-height: 2.5em;
+            width: auto;
+            margin: 0 2px 0 10px;
+          }
+        }
+      }
+
+      .clear-multi {
+        .ginput_container {
+          margin: 0 2px;
+          padding: 0;
+        }
+      }
+
+      .gfield_html {
+        color: #999;
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .right_label, .left_label {
+        input.medium, select.medium {
+          width: 100%;
+        }
+      }
+
+      ul {
+        .right_label, .left_label {
+          li {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .ginput_container {
+        margin: 10px;
+        padding: 0;
+      }
+
+      input {
+        &[type="text"],
+        &[type="url"],
+        &[type="email"],
+        &[type="tel"],
+        &[type="number"],
+        &[type="password"] {
+          letter-spacing: normal;
+
+          @include form-inputs;
+
+          width: 100%;
+          height: 32px;
+
+          *line-height: 32px;
+          *margin-left: -3px;
+          *margin-right: -4px;
+          display: inline;
+          padding: 0px 0 0 5px;
+        }
+      }
+
+      .validation_error {
+        display: none;
+      }
+
+      .gfield_description.validation_message {
+        padding: 0;
+        margin-left: 0;
+      }
+
+    }
+
+    .gform_page_footer {
+      margin: 20px auto;
+    }
+
+    .gform_footer, .gform_page_footer {
+      height: 3em;
+      padding: 0.25em;
+      margin: 0 auto;
+      width: auto;
+
+      @include form-footer;
+
+      .button {
+        @include form-buttons;
+        @include form-buttons-normal;
+      }
+
+      input[type="submit"].button {
+        @include form-buttons;
+        @include form-buttons-submit;
+      }
+    }
+
+    .gform_footer {
+      .button {
+        width: 100%;
+      }
+    }
+
+    .gform_page_footer {
+      .button {
+        width: 40%;
+        float: right;
+        &.gform_button {
+          margin-right: auto;
+        }
+      }
+      .gform_previous_button {
+        float: left;
+      }
+    }
+
+  }
+  //.gform_wrapper
+}
+
+//.themed_form
+
+.tooltipsy {
+  padding: 10px;
+  color: #fff;
+  background-color: #222;
+  @include border-radius(10px);
+  @include box-shadow(inset 0 0 10px 0px #000);
+  text-shadow: 0 0 3px #000;
+  position: relative;
+}
+
+.tooltipsy::after {
+  content: '';
+  position: absolute;
+  border: 10px solid transparent;
+  border-top-color: #000;
+  top: 10px;
+  right: -10px;
+  z-index: -1;
+}
+
+.tooltipsy-error {
+  padding: 10px;
+  color: #fff;
+  background-color: #780000;
+  @include border-radius(10px);
+  @include box-shadow(inset 0 0 10px 0px #000);
+
+  text-shadow: 0 0 3px #000;
+  position: relative;
+}
+
+.tooltipsy-error::after {
+  content: '';
+  position: absolute;
+  border: 10px solid transparent;
+  border-top-color: #780000;
+  top: 10px;
+  right: -10px;
+  z-index: -1;
+}
