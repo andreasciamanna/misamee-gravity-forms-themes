@@ -9,7 +9,7 @@
 
         // call your function
         // this gets called everytime you use the addClass method
-        jQuery(this).trigger('cssClassChanged')
+        jQuery(this).trigger('cssClassChanged');
 
         // return the original result
         return result;

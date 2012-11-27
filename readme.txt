@@ -1,10 +1,10 @@
 === Misamee Gravity Forms Themes ===
-Contributors: sciamannikoo, cmwwebfx  
+Contributors: sciamannikoo
 Donate link: http://misamee.com/donate/  
 Tags: gravity forms, gravity-forms, shortcode, theme, customization, template
 Requires at least: 3.3  
 Tested up to: 3.4  
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -42,10 +42,17 @@ Coming soon
 
 == Changelog ==
 
+= 1.1 =
+Improved custom script/js/php handling (functions.php in new themes must be updated: see included themes).
+
 = 1.0 =  
 * First release
 
 == Upgrade Notice ==
+
+= 1.1 =
+There was a wrong handling of custom files.
+Please see included themes, especially the functions.php file: if you have created your own themes, you must update them!
 
 = 1.0 =  
 First release
