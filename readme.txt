@@ -53,6 +53,9 @@ Improved custom script/js/php handling (functions.php in new themes must be upda
 
 == Upgrade Notice ==
 
+= 1.2 =
+A new way to set the theme.
+
 = 1.1 =
 There was a wrong handling of custom files.
 Please see included themes, especially the functions.php file: if you have created your own themes, you must update them!
