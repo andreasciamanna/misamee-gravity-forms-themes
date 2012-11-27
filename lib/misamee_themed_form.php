@@ -22,21 +22,50 @@ class misamee_themed_form
 	}
 
 	public $theme;
+	public $themeName;
 
 	/**
 	 * PHP 5 Constructor
 	 */
 	public function __construct()
 	{
+		$this->themeName = false;
 		$this->theme = array();
 
 		add_filter("gform_shortcode_theme", array(&$this, "misamee_themed_form_theme"), 10, 3);
+		add_filter('gform_pre_render', array(&$this, 'misamee_form_pre_render'), 10, 2);
 		add_action('widgets_init', array(&$this, "misamee_themed_form_register_widget"));
 	}
 
 	function misamee_themed_form_register_widget()
 	{
 		register_widget('misamee_themed_form_widget');
+	}
+
+	function misamee_form_pre_render($form, $ajax)
+	{
+		$formId = $form['id'];
+
+		foreach ($form['fields'] as $field) {
+			if ($field['type'] == 'hidden' && $field['label'] == 'misamee-theme') {
+				$this->themeName = $this->misamee_themed_form_setTemplate($field['defaultValue'], $formId);
+				break;
+			}
+		}
+
+		if (count($this->theme) != 0) {
+			add_action('wp_footer', array(&$this, 'enqueue_scripts'));
+			add_action('wp_footer', array(&$this, 'enqueue_styles'));
+			add_action('wp_footer', array(&$this, 'enqueue_php'));
+			add_filter('gform_get_form_filter', array(&$this, 'misamee_gform_get_form_filter'), 10, 1);
+		}
+
+		return $form;
+	}
+
+	function misamee_gform_get_form_filter($form_string)
+	{
+		return $this->wrap_form($form_string);
 	}
 
 	function misamee_themed_form_theme($string, $attributes, $content)
@@ -55,26 +84,30 @@ class misamee_themed_form
 		), $attributes));
 
 		/** @var $themename string */
-		/** @var $selectedTheme string */
-
 		/** @var $id int */
-		$themeName = $this->misamee_themed_form_setTemplate($themename, $id);
+		if ($themename != '') {
+			$this->themeName = $this->misamee_themed_form_setTemplate($themename, $id);
 
-		$additionalClasses = ($themeName != '') ? " class=\"themed_form " . $themeName . "\"" : "";
-
-		if(count($this->theme)!=0) {
-			add_action('wp_footer', array(&$this, 'enqueue_scripts'));
-			add_action('wp_footer', array(&$this, 'enqueue_styles'));
-			add_action('wp_footer', array(&$this, 'enqueue_php'));
+			if (count($this->theme) != 0) {
+				add_action('wp_footer', array(&$this, 'enqueue_scripts'));
+				add_action('wp_footer', array(&$this, 'enqueue_styles'));
+				add_action('wp_footer', array(&$this, 'enqueue_php'));
+			}
 		}
-		//$newString = str_replace('action="prettify"', 'action="form"', $string);
 
 		$attributes['action'] = 'form';
 
 		$formString = RGForms::parse_shortcode($attributes, $content = null);
-		//$formString = do_shortcode($newString);
 
-		if ($additionalClasses != '') {
+		return $this->wrap_form($formString);
+	}
+
+	public function wrap_form($formString)
+	{
+		$themeName = $this->themeName;
+
+		$additionalClasses = ($themeName != '') ? " class=\"themed_form " . $themeName . "\"" : "";
+		if ($additionalClasses != '' && strpos($formString, $additionalClasses)===false) {
 			return "<div$additionalClasses>$formString</div>";
 		}
 		return $formString;
@@ -83,8 +116,7 @@ class misamee_themed_form
 	private function misamee_themed_form_setTemplate($themeName, $formId)
 	{
 		$theme = $this->misamee_themed_form_getThemeByName($themeName);
-		
-		//echo '<pre>misamee_themed_form_setTemplate</pre>';
+
 		$themeName = strtolower($themeName);
 		if ($themeName != "none") {
 			if ($themeName == 'default') {
@@ -144,18 +176,20 @@ class misamee_themed_form
 			add_action("gform_field_css_class", array(&$this, "add_custom_class"), 10, 3);
 		}
 
-		//echo '<pre>' . print_r($this->theme, true) . '</pre>';
 		return $themeName;
 	}
 
 	function enqueue_scripts()
 	{
 		$type = 'script';
+		static $added = array();
+
 		foreach ($this->theme as $theme) {
 			if (count($theme) > 0) {
 				foreach ($theme as $themeData) {
-					if ($themeData->type == $type) {
+					if ($themeData->type == $type && !array_search($themeData->file, $added)) {
 						wp_enqueue_script($themeData->key, $themeData->file, $themeData->deps, false, true);
+						$added[] = $themeData->file;
 					}
 				}
 			}
@@ -165,11 +199,14 @@ class misamee_themed_form
 	function enqueue_styles()
 	{
 		$type = 'style';
+		static $added = array();
+
 		foreach ($this->theme as $theme) {
 			if (count($theme) > 0) {
 				foreach ($theme as $themeData) {
-					if ($themeData->type == $type) {
+					if ($themeData->type == $type && !array_search($themeData->file, $added)) {
 						wp_enqueue_style($themeData->key, $themeData->file, $themeData->deps);
+						$added[] = $themeData->file;
 					}
 				}
 			}
@@ -179,11 +216,14 @@ class misamee_themed_form
 	function enqueue_php()
 	{
 		$type = 'php';
-		foreach ($this->theme as $themeName=>$theme) {
+		static $added = array();
+
+		foreach ($this->theme as $themeName => $theme) {
 			if (count($theme) > 0) {
 				foreach ($theme as $themeData) {
-					if ($themeData->type == $type) {
+					if ($themeData->type == $type && !array_search($themeData->file, $added)) {
 						include($themeData->file);
+						$added[] = $themeData->file;
 					}
 				}
 			}
@@ -253,7 +293,6 @@ class misamee_themed_form
 					if (is_dir($file)) {
 						$themePath = substr($file, strlen(WP_CONTENT_DIR));
 						$folderArray = explode('/', $themePath);
-						//print_r($folderArray);
 						$themeName = $folderArray[count($folderArray) - 1];
 						$themeUrl = WP_CONTENT_URL . '/mgft-themes/' . $themeName . "/";
 						$themes[$themeName] = array(
@@ -283,7 +322,6 @@ class misamee_themed_form
 					if (is_dir($file)) {
 						$themePath = substr($file, strlen(WP_CONTENT_DIR));
 						$folderArray = explode('/', $themePath);
-						//print_r($folderArray);
 						$themeName = $folderArray[count($folderArray) - 1];
 						$themeUrl = misamee_gf_themes::getPluginUrl() . 'themes/' . $themeName . "/";
 						$themes[$themeName] = array(

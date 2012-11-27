@@ -6,7 +6,13 @@
   width: 80%;
 }
 /* line 93, ../sass/misamee.themed.form.autumn.scss */
-.themed_form.autumn::before, .themed_form.autumn::after {
+.themed_form.autumn .gform_wrapper {
+  background: #FFF;
+  background-color: #6d0019;
+  max-width: 100%;
+}
+/* line 98, ../sass/misamee.themed.form.autumn.scss */
+.themed_form.autumn .gform_wrapper::before, .themed_form.autumn .gform_wrapper::after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -19,8 +25,8 @@
   -moz-box-shadow: 0 25px 20px rgba(0, 0, 0, 0.7);
   box-shadow: 0 25px 20px rgba(0, 0, 0, 0.7);
 }
-/* line 105, ../sass/misamee.themed.form.autumn.scss */
-.themed_form.autumn::before {
+/* line 110, ../sass/misamee.themed.form.autumn.scss */
+.themed_form.autumn .gform_wrapper::before {
   -webkit-transform: rotate(-3deg);
   -moz-transform: rotate(-3deg);
   -ms-transform: rotate(-3deg);
@@ -28,20 +34,14 @@
   transform: rotate(-3deg);
   left: 10px;
 }
-/* line 110, ../sass/misamee.themed.form.autumn.scss */
-.themed_form.autumn::after {
+/* line 115, ../sass/misamee.themed.form.autumn.scss */
+.themed_form.autumn .gform_wrapper::after {
   -webkit-transform: rotate(3deg);
   -moz-transform: rotate(3deg);
   -ms-transform: rotate(3deg);
   -o-transform: rotate(3deg);
   transform: rotate(3deg);
   right: 10px;
-}
-/* line 115, ../sass/misamee.themed.form.autumn.scss */
-.themed_form.autumn .gform_wrapper {
-  background: #FFF;
-  background-color: #6d0019;
-  max-width: 100%;
 }
 /* line 120, ../sass/misamee.themed.form.autumn.scss */
 .themed_form.autumn .gform_wrapper .gform_heading {

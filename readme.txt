@@ -4,7 +4,7 @@ Donate link: http://misamee.com/donate/
 Tags: gravity forms, gravity-forms, shortcode, theme, customization, template
 Requires at least: 3.3  
 Tested up to: 3.4  
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -41,6 +41,9 @@ http://misamee.com/2012/11/themed-gravity-forms-examples/
 Coming soon
 
 == Changelog ==
+
+= 1.2 =
+* Now you can add a hidden field in your forms to specify which theme should be used: add a field called misamee-theme and set the default value to the theme you want to use
 
 = 1.1 =
 Improved custom script/js/php handling (functions.php in new themes must be updated: see included themes).

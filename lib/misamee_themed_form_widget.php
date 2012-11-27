@@ -44,9 +44,6 @@ if (!class_exists("misamee_themed_form_widget") && class_exists("GFWidget")) {
 				'themename' => $instance['themed_template']
 			);
 
-			/*            echo '<pre>';
-						print_r($attributes);
-						echo '</pre>';*/
 			$form_markup = str_replace("\\\"", "\"", RGForms::parse_shortcode($attributes));
 
 			//display form

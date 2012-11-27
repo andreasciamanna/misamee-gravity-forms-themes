@@ -90,32 +90,32 @@
   margin: 0 auto;
   width: 80%;
 
-  &::before, &::after {
-    z-index: -1;
-    position: absolute;
-    content: "";
-    bottom: 20px;
-    width: 50%;
-    top: 80%;
-    max-width: 300px;
-    background: rgba(0, 0, 0, 0.7);
-    @include box-shadow(0 25px 20px rgba(0, 0, 0, 0.7));
-  }
-
-  &::before {
-    @include transform(rotate(-3deg));
-    left: 10px;
-  }
-
-  &::after {
-    @include transform(rotate(3deg));
-    right: 10px;
-  }
-
   .gform_wrapper {
     @include form-wrapper;
 
     max-width: 100%;
+
+    &::before, &::after {
+      z-index: -1;
+      position: absolute;
+      content: "";
+      bottom: 20px;
+      width: 50%;
+      top: 80%;
+      max-width: 300px;
+      background: rgba(0, 0, 0, 0.7);
+      @include box-shadow(0 25px 20px rgba(0, 0, 0, 0.7));
+    }
+
+    &::before {
+      @include transform(rotate(-3deg));
+      left: 10px;
+    }
+
+    &::after {
+      @include transform(rotate(3deg));
+      right: 10px;
+    }
 
     .gform_heading {
       @include form-header;
