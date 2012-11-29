@@ -17,7 +17,7 @@
 })();
 
 jQuery(document).ready(function ($) {
-    var $templateMainElement = $('.themed_form.default');
+    var $templateMainElement = $('.themed_form');
     if (!("placeholder" in document.createElement("input"))) {
         $("input[placeholder], textarea[placeholder]", $templateMainElement).each(function () {
             var val = $(this).attr("placeholder");
@@ -52,10 +52,12 @@ jQuery(document).ready(function ($) {
 
     $('.gfield input', $templateMainElement).each(function () {
         if ($(this).attr('id') != '') {
-            var $label = $('label[for="' + $(this).attr('id') + '"]');
-            $label.hide();
-            $(this).addClass('misamee_themed_form_input');
-            $(this).attr('placeholder', $label.text());
+            if ($(this).attr('type') != 'checkbox' && $(this).attr('type') != 'radio') {
+                var $label = $('label[for="' + $(this).attr('id') + '"]');
+                $label.hide();
+                $(this).addClass('misamee_themed_form_input');
+                $(this).attr('placeholder', $label.text());
+            }
         }
 
         var $descElement = $(this).parent('.ginput_container').siblings('.gfield_description:not(".validation_message")');
@@ -63,20 +65,20 @@ jQuery(document).ready(function ($) {
         if ($toolTip != '') {
             $descElement.hide();
             $(this).tooltipsy({
-                content:$toolTip,
-                alignTo:'element',
-                offset:[-10, 10],
-                show:function (e, $el) {
+                content: $toolTip,
+                alignTo: 'element',
+                offset: [-10, 10],
+                show: function (e, $el) {
                     $el.css({
-                        'left':parseInt($el[0].style.left.replace(/[a-z]/g, '')) - 50 + 'px',
-                        'opacity':'0.0',
-                        'display':'block'
+                        'left': parseInt($el[0].style.left.replace(/[a-z]/g, '')) - 50 + 'px',
+                        'opacity': '0.0',
+                        'display': 'block'
                     }).animate({
-                            'left':parseInt($el[0].style.left.replace(/[a-z]/g, '')) + 50 + 'px',
-                            'opacity':'1.0'
+                            'left': parseInt($el[0].style.left.replace(/[a-z]/g, '')) + 50 + 'px',
+                            'opacity': '1.0'
                         }, 300);
                 },
-                hide:function (e, $el) {
+                hide: function (e, $el) {
                     $el.slideUp(100);
                 }
             });
@@ -88,9 +90,9 @@ jQuery(document).ready(function ($) {
             $validationElement.hide();
             //$(this).data('tooltipsy').destroy();
             $(this).tooltipsy({
-                content:$validationToolTip,
-                alignTo:'element',
-                offset:[-10, 10],
+                content: $validationToolTip,
+                alignTo: 'element',
+                offset: [-10, 10],
                 className: 'tooltipsy-error'
             });
             $(this).trigger('focus');

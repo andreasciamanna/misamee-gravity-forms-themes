@@ -3,7 +3,7 @@
 Plugin Name: Misamee Gravity Forms Themes
 Plugin URI: http://misamee.com/2012/11/misamee-gravity-forms-themes/
 Description: Add the ability to specify different themes for each form. Themes can be customized.
-Version: 1.2
+Version: 1.3
 Author: Misamee
 Author URI: http://misamee.com/
 */
