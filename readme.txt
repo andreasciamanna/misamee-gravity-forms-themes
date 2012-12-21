@@ -4,7 +4,7 @@ Donate link: http://misamee.com/donate/
 Tags: gravity forms, gravity-forms, shortcode, theme, customization, template
 Requires at least: 3.3  
 Tested up to: 3.4  
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -42,6 +42,9 @@ Coming soon
 
 == Changelog ==
 
+= 1.3.1 =
+* Some debugging leftovers removed: my apologies.
+
 = 1.3 =
 * [Themes bug] Show labels for checkboxes and radio buttons
 * [Theme improvement] Default Theme javascript file scope changed to '.themed_form' (common on all themed forms) in order to be reused by other themes
@@ -58,6 +61,9 @@ Improved custom script/js/php handling (functions.php in new themes must be upda
 * First release
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+This update is needed to remove a debug string left by mistake.
 
 = 1.3 =
 Checkboxes and Radio buttons labels now are shown on default and formSpring themes.
