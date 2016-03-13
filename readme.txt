@@ -1,16 +1,19 @@
 === Misamee Gravity Forms Themes ===
 Contributors: sciamannikoo
-Donate link: http://misamee.com/donate/  
 Tags: gravity forms, gravity-forms, shortcode, theme, customization, template
-Requires at least: 3.3  
-Tested up to: 3.4  
-Stable tag: 1.3.1
+Requires at least: 3.3
+Tested up to: 4.4
+Stable tag: 1.3.2
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
 Add themes (skins) to Gravity Forms
 
 == Description ==
+
+PLEASE NOTE: this plugin is not maintained.
+The last version makes sure to solve possible compatibility issues.
+If you wish to maintain this plugin, feel free to contact me.
 
 Misamee Gravity Forms Themes provide a couple of skins for your Gravity Forms and allows you to create your custom skins.
 Skins can include just a CSS, but also one or more JavaScript and php files.
@@ -41,6 +44,11 @@ http://misamee.com/2012/11/themed-gravity-forms-examples/
 Coming soon
 
 == Changelog ==
+
+= 1.3.2 =
+* Removed `WP_Widget` deprecated constructor
+* Renamed class names to be more standard
+* Updated some outdated libraries
 
 = 1.3.1 =
 * Some debugging leftovers removed: my apologies.

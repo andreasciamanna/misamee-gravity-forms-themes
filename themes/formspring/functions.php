@@ -14,4 +14,4 @@ $themeData	It's the theme object containing:
 
 wp_enqueue_style("misamee-themed-form-$themeName", "{$themeData->themeUrl}css/misamee.themed.form.$themeName.css");
 wp_enqueue_script('tooltipsy', "{$themeData->themeUrl}js/tooltipsy.min.js", array('jquery'), false, true);
-wp_enqueue_script("misamee-themed-form-$themeName", misamee_gf_themes::getPluginUrl() . "js/misamee.themed.form.js", array('jquery'));
+wp_enqueue_script("misamee-themed-form-$themeName", Misamee_GF_Themes::getPluginUrl() . "js/misamee.themed.form.js", array('jquery'));
