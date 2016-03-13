@@ -31,15 +31,6 @@ if ( ! class_exists( 'Misamee_GF_Themes' ) ) {
 
 		var $pluginBaseName = "";
 
-		/**
-		 * @var array $options Stores the options for this plugin
-		 */
-		//var $options = array();
-		/**
-		 * @var string $localizationDomain Domain used for localization
-		 */
-		static $localizationDomain = "misamee-gf-themes";
-
 		static $pluginPath;
 		static $pluginUrl;
 
@@ -89,7 +80,7 @@ if ( ! class_exists( 'Misamee_GF_Themes' ) ) {
 		}
 
 		function misamee_gf_tools_localization() {
-			load_plugin_textdomain( self::$localizationDomain, false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+			load_plugin_textdomain( 'misamee-gravity-forms-themes', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		}
 
 
@@ -129,3 +120,26 @@ if ( class_exists( 'Misamee_GF_Themes' ) ) {
 	echo "Can't find misamee_gf_themes.";
 }
 
+
+if ( ! function_exists( 'rgar' ) ) {
+	/**
+	 * Get a specific property of an array without needing to check if that property exists. Provide a default value if
+	 * you want to return a specific value if the property is not set.
+	 *
+	 * @param      $array   array  Array from which the property's value should be retrieved.
+	 * @param      $prop    string Name of the property to be retreived.
+	 * @param null $default mixed  Value that should be returned if the property is not set or empty.
+	 *
+	 * @return null|string|mixed
+	 */
+	function rgar( $array, $prop, $default = null ) {
+
+		if ( isset( $array[ $prop ] ) ) {
+			$value = $array[ $prop ];
+		} else {
+			$value = '';
+		}
+
+		return empty( $value ) && $default !== null ? $default : $value;
+	}
+}

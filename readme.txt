@@ -49,6 +49,7 @@ Coming soon
 * Removed `WP_Widget` deprecated constructor
 * Renamed class names to be more standard
 * Updated some outdated libraries
+* Added proper gettext domain
 
 = 1.3.1 =
 * Some debugging leftovers removed: my apologies.

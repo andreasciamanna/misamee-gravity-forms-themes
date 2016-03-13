@@ -5,7 +5,7 @@ if ( ! class_exists( "Misamee_Themed_Form_Widget" ) && class_exists( "GFWidget" 
 			parent::__construct( 'misamee_themed_form_widget', 'Themed Form',
 				array(
 					'classname'   => 'misamee_themed_form_widget',
-					'description' => __( 'Themed Gravity Forms Widget', Misamee_GF_Themes::$localizationDomain )
+					'description' => __( 'Themed Gravity Forms Widget', 'misamee-gravity-forms-themes' )
 				),
 				array(
 					'width'   => 200,
@@ -71,13 +71,13 @@ if ( ! class_exists( "Misamee_Themed_Form_Widget" ) && class_exists( "GFWidget" 
 	function form( $instance ) {
 
 		$instance = wp_parse_args( (array) $instance, array(
-			'title'    => __( "Contact Us", Misamee_GF_Themes::$localizationDomain ),
+			'title'    => __( "Contact Us", 'misamee-gravity-forms-themes' ),
 			'tabindex' => '1'
 		) );
 		?>
 		<p>
 			<label
-				for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( "Title", Misamee_GF_Themes::$localizationDomain ); ?>
+				for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( "Title", 'misamee-gravity-forms-themes' ); ?>
 				:</label>
 			<input id="<?php echo $this->get_field_id( 'title' ); ?>"
 			       name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>"
@@ -85,7 +85,7 @@ if ( ! class_exists( "Misamee_Themed_Form_Widget" ) && class_exists( "GFWidget" 
 		</p>
 		<p>
 			<label
-				for="<?php echo $this->get_field_id( 'form_id' ); ?>"><?php _e( "Select a Form", Misamee_GF_Themes::$localizationDomain ); ?>
+				for="<?php echo $this->get_field_id( 'form_id' ); ?>"><?php _e( "Select a Form", 'misamee-gravity-forms-themes' ); ?>
 				:</label>
 			<select id="<?php echo $this->get_field_id( 'form_id' ); ?>"
 			        name="<?php echo $this->get_field_name( 'form_id' ); ?>" style="width:90%;">
@@ -103,7 +103,7 @@ if ( ! class_exists( "Misamee_Themed_Form_Widget" ) && class_exists( "GFWidget" 
 		</p>
 		<p>
 			<label
-				for="<?php echo $this->get_field_id( 'themed_template' ); ?>"><?php _e( "Select a Template", Misamee_GF_Themes::$localizationDomain ); ?>
+				for="<?php echo $this->get_field_id( 'themed_template' ); ?>"><?php _e( "Select a Template", 'misamee-gravity-forms-themes' ); ?>
 				:</label>
 			<select id="<?php echo $this->get_field_id( 'themed_template' ); ?>"
 			        name="<?php echo $this->get_field_name( 'themed_template' ); ?>" style="width:90%;">
@@ -123,32 +123,32 @@ if ( ! class_exists( "Misamee_Themed_Form_Widget" ) && class_exists( "GFWidget" 
 			<input type="checkbox" name="<?php echo $this->get_field_name( 'showtitle' ); ?>"
 			       id="<?php echo $this->get_field_id( 'showtitle' ); ?>" <?php checked( rgar( $instance, 'showtitle' ) ); ?>
 			       value="1"/> <label
-				for="<?php echo $this->get_field_id( 'showtitle' ); ?>"><?php _e( "Display form title", Misamee_GF_Themes::$localizationDomain ); ?></label><br/>
+				for="<?php echo $this->get_field_id( 'showtitle' ); ?>"><?php _e( "Display form title", 'misamee-gravity-forms-themes' ); ?></label><br/>
 			<input type="checkbox" name="<?php echo $this->get_field_name( 'showdescription' ); ?>"
 			       id="<?php echo $this->get_field_id( 'showdescription' ); ?>" <?php checked( rgar( $instance, 'showdescription' ) ); ?>
 			       value="1"/> <label
-				for="<?php echo $this->get_field_id( 'showdescription' ); ?>"><?php _e( "Display form description", Misamee_GF_Themes::$localizationDomain ); ?></label><br/>
+				for="<?php echo $this->get_field_id( 'showdescription' ); ?>"><?php _e( "Display form description", 'misamee-gravity-forms-themes' ); ?></label><br/>
 		</p>
 		<p>
-			<a href="javascript: var a; var obj = jQuery('.gf_widget_advanced'); if(!obj.is(':visible')) {a = obj.show('slow');} else {a = obj.hide('slow');}"><?php _e( "advanced options", Misamee_GF_Themes::$localizationDomain ); ?></a>
+			<a href="javascript: var a; var obj = jQuery('.gf_widget_advanced'); if(!obj.is(':visible')) {a = obj.show('slow');} else {a = obj.hide('slow');}"><?php _e( "advanced options", 'misamee-gravity-forms-themes' ); ?></a>
 		</p>
 		<p class="gf_widget_advanced" style="display:none;">
 			<input type="checkbox" name="<?php echo $this->get_field_name( 'ajax' ); ?>"
 			       id="<?php echo $this->get_field_id( 'ajax' ); ?>" <?php checked( rgar( $instance, 'ajax' ) ); ?>
 			       value="1"/> <label
-				for="<?php echo $this->get_field_id( 'ajax' ); ?>"><?php _e( "Enable AJAX", Misamee_GF_Themes::$localizationDomain ); ?></label><br/>
+				for="<?php echo $this->get_field_id( 'ajax' ); ?>"><?php _e( "Enable AJAX", 'misamee-gravity-forms-themes' ); ?></label><br/>
 			<input type="checkbox" name="<?php echo $this->get_field_name( 'disable_scripts' ); ?>"
 			       id="<?php echo $this->get_field_id( 'disable_scripts' ); ?>" <?php checked( rgar( $instance, 'disable_scripts' ) ); ?>
 			       value="1"/> <label
-				for="<?php echo $this->get_field_id( 'disable_scripts' ); ?>"><?php _e( "Disable script output", Misamee_GF_Themes::$localizationDomain ); ?></label><br/>
+				for="<?php echo $this->get_field_id( 'disable_scripts' ); ?>"><?php _e( "Disable script output", 'misamee-gravity-forms-themes' ); ?></label><br/>
 			<label
-				for="<?php echo $this->get_field_id( 'tabindex' ); ?>"><?php _e( "Tab Index Start", Misamee_GF_Themes::$localizationDomain ); ?>
+				for="<?php echo $this->get_field_id( 'tabindex' ); ?>"><?php _e( "Tab Index Start", 'misamee-gravity-forms-themes' ); ?>
 				: </label>
 			<input id="<?php echo $this->get_field_id( 'tabindex' ); ?>"
 			       name="<?php echo $this->get_field_name( 'tabindex' ); ?>"
 			       value="<?php echo rgar( $instance, 'tabindex' ); ?>" style="width:15%;"/><br/>
 			<span
-				style="font-size: small;"><?php _e( "If you have other forms on the page (i.e. Comments Form), specify a higher tabindex start value so that your Gravity Form does not end up with the same tabindices as your other forms. To disable the tabindex, enter 0 (zero).", Misamee_GF_Themes::$localizationDomain ); ?></span>
+				style="font-size: small;"><?php _e( "If you have other forms on the page (i.e. Comments Form), specify a higher tabindex start value so that your Gravity Form does not end up with the same tabindices as your other forms. To disable the tabindex, enter 0 (zero).", 'misamee-gravity-forms-themes' ); ?></span>
 		</p>
 
 		<?php
